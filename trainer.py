@@ -1,8 +1,10 @@
 import numpy as np
+import json
 #const
-image_lw = 256
-hidden_n = 32
-n_outputs = 2
+image_lw = 784
+hidden_n = 192
+n_outputs = 3
+
 #activation
 def relu(x):
     return np.maximum(0, x)
@@ -10,9 +12,11 @@ def relu_derivative(x):
     return (x > 0).astype(float)
 def softmax(x): #exaggerates differences by exponentiation
     exp_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
-    return exp_x / np.sum(exp_x, axis=-1, keepdims=True) #prevents overflow
+    return exp_x / np.sum(exp_x, axis=-1, keepdims=True) #prevents overflow (?)
 
 def train(training_inputs, training_outputs):
+    epochs=int(input("Epochs? "))
+    print("training...")
     #init params
     np.random.seed(1)
     weights1 = 2 * np.random.random((image_lw, hidden_n)) - 1
@@ -21,7 +25,7 @@ def train(training_inputs, training_outputs):
     bias2 = 0
     #print("Initial Weights:\n", weights)
     learning_rate = 0.001
-    for train_loop in range(10000):
+    for epoch in range(epochs):
         #forward
         input_layer = training_inputs
         l1 = np.dot(input_layer, weights1) + bias1
@@ -44,12 +48,26 @@ def train(training_inputs, training_outputs):
         bias2 -= learning_rate * grad_bias2
         weights1 -= learning_rate * grad_weights1
         bias1 -= learning_rate * grad_bias1
-        if train_loop % 1000 == 1:
-            print(np.round(l2_outputs, decimals=2))
-            loss = -np.mean(np.sum(np.array(training_outputs) * np.log(l2_outputs + 1e-8), axis=1))
-            print(f"Loop {train_loop}, loss: {loss:.4f}")
-    #print("\nWeights After Training:\n", weights)
-    #print("\nOutputs After Training:\n", np.round(outputs,1))
+        if epoch % 100 == 1:
+            #print(np.round(l2_outputs, decimals=2))
+            #loss = -np.mean(np.sum(np.array(training_outputs) * np.log(l2_outputs + 1e-8), axis=1))
+            #print(f"Loop {train_loop}, loss: {loss:.4f}")
+            print("Epoch: ", epoch, "/", epochs)
+        if epoch == epochs-1:
+            print("Epoch: ", epochs, "/", epochs)
+    
+    #store training data to avoid unnessecary gym sessions
+    with open("training_data/l2_outputs.txt", "w") as file:
+        json.dump(l2_outputs.tolist(), file)
+    with open("training_data/weights1.txt", "w") as file:
+        json.dump(weights1.tolist(), file)
+    with open("training_data/bias1.txt", "w") as file:
+        json.dump(bias1.tolist(), file)
+    with open("training_data/weights2.txt", "w") as file:
+        json.dump(weights2.tolist(), file)
+    with open("training_data/bias2.txt", "w") as file:
+        json.dump(bias2.tolist(), file)
+
     return weights1, bias1, weights2, bias2
 
     
