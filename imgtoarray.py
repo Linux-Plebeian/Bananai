@@ -5,7 +5,7 @@ def read_training_data(categories, images_per_category): # Name images <category
     data = [[]]
     for i in range(1,categories+1):
         for j in range(0,images_per_category):
-            img = Image.open(f"training_data/faces/{i}({j}).png")
+            img = Image.open(f"training_data/{i}({j}).png")
 
             img_bin = img.convert("1")
             img_arr2d = np.array(img_bin).astype(int)
