@@ -54,7 +54,7 @@ while True:
         print(prediction)
         if prediction[0][1] >= .5:
             print("Mid")
-        elif prediction[0][0] >= .5::
+        elif prediction[0][0] >= .5:
             print("Good")
         elif prediction[0][2] >= .5:
             print("Bad")
