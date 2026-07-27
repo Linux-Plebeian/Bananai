@@ -4,13 +4,13 @@ import os
 
 def name_data(name, name2):
     for i in range(0,10):
-        os.rename(f"/home/andrew/Documents/projects_programming/py/Bananai/training_images/{name}_0"+str(i)+".png", "/home/andrew/Documents/projects_programming/py/Bananai/training_images/"+str(i)+".png")
+        os.rename(f"./training_images/{name}_0"+str(i)+".png", "./training_images/"+str(i)+".png")
     for i in range(10,72):
-        os.rename(f"/home/andrew/Documents/projects_programming/py/Bananai/training_images/{name}_"+str(i)+".png", "/home/andrew/Documents/projects_programming/py/Bananai/training_images/"+str(i)+".png")
+        os.rename(f"./training_images/{name}_"+str(i)+".png", "./training_images/"+str(i)+".png")
     for i in range(0,10):
-        os.rename(f"/home/andrew/Documents/projects_programming/py/Bananai/training_images/{name2}_0"+str(i)+".png", "/home/andrew/Documents/projects_programming/py/Bananai/training_images/"+str(i+72)+".png")
+        os.rename(f"./training_images/{name2}_0"+str(i)+".png", "./training_images/"+str(i+72)+".png")
     for i in range(10,72):
-        os.rename(f"/home/andrew/Documents/projects_programming/py/Bananai/training_images/{name2}_"+str(i)+".png", "/home/andrew/Documents/projects_programming/py/Bananai/training_images/"+str(i+72)+".png")
+        os.rename(f"./training_images/{name2}_"+str(i)+".png", "./training_images/"+str(i+72)+".png")
 
 
 def read_training_data(elements): # Name images <category>(<item>) starting with 1 for categories and 0 for item no. -> ex. 2(1)

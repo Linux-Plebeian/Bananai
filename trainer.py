@@ -2,7 +2,7 @@ import numpy as np
 import json
 #const
 image_lw = 784
-hidden_n = 192
+hidden_n = 128
 n_outputs = 3
 
 #activation
