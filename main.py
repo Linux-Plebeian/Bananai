@@ -52,11 +52,11 @@ while True:
         input_image = ita.test(path)
         prediction = np.round(dingus(input_image, weights1, bias1, weights2, bias2), decimals=3)
         print(prediction)
-        if np.argmax(prediction) == 1:
+        if prediction[0][1] >= .5:
             print("Mid")
-        elif np.argmax(prediction) == 0 and np.argmin(prediction) == 1:
+        elif prediction[0][0] >= .5::
             print("Good")
-        else:
+        elif prediction[0][2] >= .5:
             print("Bad")
     else:
         print("Invalid command")
