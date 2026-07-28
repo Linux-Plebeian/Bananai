@@ -6,12 +6,14 @@ import asdlkfj as deez
 
 print(deez.nuts())
 
-def dingus(input_layer, weights1, bias1, weights2, bias2):
+def dingus(input_layer, weights1, bias1, weights2, bias2, weights3, bias3):
     l1 = np.dot(input_layer, weights1) + bias1
     l1_outputs = tr.relu(l1)
     l2 = np.dot(l1_outputs, weights2) + bias2
-    l2_outputs = tr.softmax(l2)
-    return l2_outputs
+    l2_outputs = tr.relu(l2)
+    l3 = np.dot(l2_outputs, weights3) + bias3
+    l3_outputs = tr.softmax(l3)
+    return l3_outputs
 
 elements = 144
 input_faces = ita.read_training_data(elements)
@@ -24,16 +26,8 @@ desired_training_outputs = [[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0
                             ]
 #list_desired_outputs = [1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0]
 #desired_outputs = np.array([list_desired_outputs]).T
-
 #read gains
-with open("training_data/weights1.txt", "r") as file:
-    weights1 = json.load(file)
-with open("training_data/bias1.txt", "r") as file:
-    bias1 = json.load(file)
-with open("training_data/weights2.txt", "r") as file:
-    weights2 = json.load(file)
-with open("training_data/bias2.txt", "r") as file:
-    bias2 = json.load(file)
+
 '''
 training_data = tr.train(input_faces, desired_training_outputs)
 weights1 = training_data[0]
@@ -48,9 +42,21 @@ while True:
     elif command == "train":
         tr.train(input_faces, desired_training_outputs)
     elif command == "banana":
+        with open("training_data/weights1.txt", "r") as file:
+            weights1 = json.load(file)
+        with open("training_data/bias1.txt", "r") as file:
+            bias1 = json.load(file)
+        with open("training_data/weights2.txt", "r") as file:
+            weights2 = json.load(file)
+        with open("training_data/bias2.txt", "r") as file:
+            bias2 = json.load(file)
+        with open("training_data/weights3.txt", "r") as file:
+            weights3 = json.load(file)
+        with open("training_data/bias3.txt", "r") as file:
+            bias3 = json.load(file)
         path = input("Enter image filename: ")
         input_image = ita.test(path)
-        prediction = np.round(dingus(input_image, weights1, bias1, weights2, bias2), decimals=3)
+        prediction = np.round(dingus(input_image, weights1, bias1, weights2, bias2, weights3, bias3), decimals=3)
         print(prediction)
         if prediction[0][1] >= .5:
             print("Mid")
