@@ -3,7 +3,7 @@ import json
 import imgtoarray as ita
 import trainer as tr
 import asdlkfj as deez
-
+import camera as c
 print(deez.nuts())
 
 def dingus(input_layer, weights1, bias1, weights2, bias2, weights3, bias3):
@@ -54,8 +54,9 @@ while True:
             weights3 = json.load(file)
         with open("training_data/bias3.txt", "r") as file:
             bias3 = json.load(file)
-        path = input("Enter image filename: ")
-        input_image = ita.test(path)
+        #path = input("Enter image filename: ")
+        c.main()
+        input_image = ita.test("banana.png")
         prediction = np.round(dingus(input_image, weights1, bias1, weights2, bias2, weights3, bias3), decimals=3)
         print(prediction)
         if prediction[0][1] >= .5:
