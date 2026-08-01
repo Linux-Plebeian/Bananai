@@ -6,8 +6,8 @@ import board
 import imgtoarray as ita
 from  PIL import Image
 
-oled_reset = None
-oled = adafruit_ssd1306.SSD1306_128_64(rst=oled_reset)
+i2c=busio.I2C)(board.SCL, board.SDA)
+oled = adafruit_ssd1306.SSD1306(128,64,i2c)
 
 oled.begin()
 oled.clear()
