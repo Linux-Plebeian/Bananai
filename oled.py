@@ -1,6 +1,8 @@
 import time
 import RPi.GPIO as gpio
-import Adafruit_SSD1306
+import adafruit_ssd1306
+import busio
+import board
 import imgtoarray as ita
 from  PIL import Image
 
