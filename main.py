@@ -70,7 +70,7 @@ while True:
             prediction1 = np.round(dingus(input_image1, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             prediction2 = np.round(dingus(input_image2, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             prediction3 = np.round(dingus(input_image3, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
-            print(prediction)
+            print((prediction1 + prediction2 + prediction3)/3)
             if (prediction1[0][1] + prediction2[0][1] + prediction3[0][1])/3 >= .5:
                 print("Mid")
             elif (prediction1[0][0] + prediction2[0][0] + prediction3[0][0])/3 >= .5:

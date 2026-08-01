@@ -51,7 +51,7 @@ def train(training_inputs, training_outputs):
 
 
         #backprop (output)
-        grad_l5 = l5_outputs - training_outputs          # softmax+cross-entropy shortcut
+        grad_l5 = l5_outputs - training_outputs          # softmax+cross-entropy shortcut (what?)
         grad_weights5 = np.dot(l4_outputs.T, grad_l5)
         grad_bias5 = np.sum(grad_l5, axis=0, keepdims=True)
         
@@ -61,7 +61,7 @@ def train(training_inputs, training_outputs):
         grad_weights4 = np.dot(l3.T, grad_l4)
         grad_bias4 = np.sum(grad_l4, axis=0, keepdims=True)
         
-        #backprop (hl3)
+        #backprop (hl3 send help)
         grad_l3_outputs = np.dot(grad_l4, weights4.T)
         grad_l3 = grad_l3_outputs * relu_derivative(l3)
         grad_weights3 = np.dot(l2.T, grad_l3)
