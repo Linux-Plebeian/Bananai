@@ -7,7 +7,7 @@ import imgtoarray as ita
 from  PIL import Image
 
 oled_reset = None
-oled = Adafruit_SSD1306.SSD1306_128_64(rst=oled_reset)
+oled = adafruit_ssd1306.SSD1306_128_64(rst=oled_reset)
 
 oled.begin()
 oled.clear()
