@@ -5,6 +5,7 @@ import trainer as tr
 import asdlkfj as deez
 import camera as c
 import oled
+
 print(deez.nuts())
 
 def dingus(input_layer, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5):
@@ -33,8 +34,7 @@ desired_training_outputs = [[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0
 
 print("Type \"Help\" for a list of commands")
 
-#data harvested from summer camp
-
+oled.test()
 while True:
     command = input("> ")
     if command == "help":
@@ -68,7 +68,8 @@ while True:
             input_image1 = ita.convert(f"images/banana1.png")
             input_image2 = ita.convert(f"images/banana2.png")
             input_image3 = ita.convert(f"images/banana3.png")
-            oled.draw_sprite(ita.convert("camera/banana1.png"))
+            oled.draw_sprite(10,10,128,64,ita.convert("camera/banana1.png"))
+            oled.clear()
             prediction1 = np.round(dingus(input_image1, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             prediction2 = np.round(dingus(input_image2, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             prediction3 = np.round(dingus(input_image3, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
