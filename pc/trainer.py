@@ -2,7 +2,7 @@ import numpy as np
 import json
 #const
 image_lw = 784
-hidden_n = 1045
+hidden_n = 1568
 hidden2_n = 784
 hidden3_n = 196
 hidden4_n = 32
