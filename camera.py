@@ -2,7 +2,7 @@ import cv2
 from PIL import Image
 import oled
 def main():
-    vid = cv2.VideoCapture(1)
+    vid = cv2.VideoCapture(0, cv2.CAP_V4L2)
 
     while True:
         for i in range(1,4):
