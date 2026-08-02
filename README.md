@@ -12,4 +12,8 @@ Project status
   - Install Raspberry Pi OS Lite
   - Run "sudo raspi-config" and enable ARM64 I2C
   - Run install.sh to install dependencies
+<<<<<<< HEAD
   - Run "sudo -E python3 main.py" to start
+=======
+  - Run "sudo -E python3 main.py" to start
+>>>>>>> 4a14a53 (added versions for PC and RPI)
