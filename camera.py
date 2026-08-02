@@ -3,9 +3,17 @@ from PIL import Image
 import oled
 import imgtoarray as ita
 import keyboard
+
+breakage = 0
+
+def deez():
+    print("Processing...")
+    breakage = 1
+    
 def main():
     vid = cv2.VideoCapture(0, cv2.CAP_V4L2)
     test = 0
+    breakage = 0
     while True:
         for i in range(1,4):
             ret, frame = vid.read()
@@ -20,9 +28,11 @@ def main():
             test+=1
             oled.draw_sprite(1,1,128,64,ita.convert("camera/banana1.png"))
         
-        if keyboard.is_pressed('q'):
+            if keyboard.is_pressed('q'):
+                deez()
+                break
+        if breakage == 1:
             break
-            
 
     
 

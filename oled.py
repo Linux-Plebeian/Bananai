@@ -9,8 +9,8 @@ oled.text("BananAI v0.2", 0, 0, 1)
 def draw_sprite(x, y, l, h, sprite_bin):
     for i in range(0,l):
         for j in range(0,h):
-            if sprite_bin[i + j*l] = 1:
-                oled.pixel(i,j,1)
+            if sprite_bin[i + j*l] >= 0.9:
+                oled.pixel(i+x,j+y,1)
     oled.show()
 
 def clear():
@@ -20,5 +20,5 @@ def test():
     time.sleep(.1)
     oled.fill(0)
     oled.show()
-    oled.text("Hello, bananai", 0, 0, 1)
+    oled.text("BananAI v0.2", 0, 0, 1)
     oled.show()
