@@ -10,8 +10,8 @@ def draw_sprite(x, y, l, h, sprite_bin):
     oled.text("DRAW",0,0,1)
     for i in range(0,l):
         for j in range(0,h):
-            if (sprite_bin[i + j*l]/255) >= 0.7:
-                oled.pixel(i+x+1,j+y+1,1)
+            if (sprite_bin[i + j*l]) >= 0.5:
+                oled.pixel(i+x,j+y,1)
     oled.show()
 
 def clear():

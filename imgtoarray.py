@@ -38,5 +38,5 @@ def convert(image):
 def convert_oled(image):
     img = Image.open(f"{image}")
     img_bin =np.round((np.array(img.convert("L"))/255).flatten().tolist(),3)
-    print(img_bin)
+    #print(img_bin)
     return img_bin
