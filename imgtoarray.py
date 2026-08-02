@@ -26,7 +26,7 @@ def read_training_data(elements): # Name images <category>(<item>) starting with
     print(r)
     return r
 def convert(image):
-    img = Image.open(f"images/{image}")
+    img = Image.open(f"{image}")
     img_gs = img.convert('L')
     #img_bin = img_grayscale.convert("1")
     img_arr2d = np.array(img_gs)
