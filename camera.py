@@ -26,7 +26,7 @@ def main():
             img.save(f"images/banana{i}.png")
             print("frame",test)
             test+=1
-            oled.draw_sprite(1,1,128,64,ita.convert("camera/banana1.png"))
+            oled.draw_sprite(1,1,128,64,ita.convert_oled("camera/banana1.png"))
         
             if keyboard.is_pressed('q'):
                 deez()
