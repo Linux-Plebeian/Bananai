@@ -24,7 +24,7 @@ def main():
             img.save(f"camera/banana{i}.png")
             img = img.resize((28, 28))
             img.save(f"images/banana{i}.png")
-            print("frame",test)
+            #print("frame",test)
             test+=1
             oled.clear()
             oled.draw_sprite(1,1,127,63,ita.convert_oled("camera/banana1.png"))
