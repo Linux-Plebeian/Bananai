@@ -27,7 +27,7 @@ def main():
             #print("frame",test)
             test+=1
             oled.clear()
-            oled.draw_sprite(1,1,127,63,ita.convert_oled("camera/banana1.png"))
+            oled.draw_sprite(0,0,128,64,ita.convert_oled("camera/banana1.png"))
         
             if keyboard.is_pressed('q'):
                 break
