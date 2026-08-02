@@ -11,7 +11,8 @@ def draw_sprite(x, y, l, h, sprite_bin):
         for j in range(0,h):
             if sprite_bin[i + j*l] > 0.5:
                 oled.pixel(i,j,1)
-    oled.show()
+                oled.text(0,0,"BananAI v0.2", 1)
+                oled.show()
 
 def clear():
     oled.fill(0)           
