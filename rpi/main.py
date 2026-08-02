@@ -36,7 +36,7 @@ print("Type \"Help\" for a list of commands")
 
 oled.test()
 while True:
-    command = input("> ")
+    command = "banana"
     if command == "help":
         print("train, banana")
     elif command == "train":
@@ -63,7 +63,7 @@ while True:
         with open("training_data/bias5.txt", "r") as file:
             bias5 = json.load(file)
         #path = input("Enter image filename: ")
-        for i in range(1,20):
+        while True:
             c.main()
             input_image1 = ita.convert(f"images/banana1.png")
             input_image2 = ita.convert(f"images/banana2.png")
