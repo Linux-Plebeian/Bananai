@@ -1,6 +1,8 @@
 import cv2
 from PIL import Image
 import oled
+import imgtoarray as ita
+import keyboard
 def main():
     vid = cv2.VideoCapture(0, cv2.CAP_V4L2)
     test = 0
@@ -16,7 +18,9 @@ def main():
             img.save(f"images/banana{i}.png")
             print("frame",test)
             test+=1
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+            oled.draw_sprite(1,1,128,64,ita.convert("camera/banana1.png"))
+        
+        if keyboard.is_pressed('q'):
             break
             
 
