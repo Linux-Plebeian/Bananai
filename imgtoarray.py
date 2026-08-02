@@ -13,7 +13,7 @@ def name_data(name, name2):
         os.rename(f"./training_images/{name2}_"+str(i)+".png", "./training_images/"+str(i+72)+".png")
 
 
-def read_training_data(elements): # Name images <category>(<item>) starting with 1 for categories and 0 for item no. -> ex. 2(1)
+def read_training_data(elements): 
     data = []
     for i in range(0,elements):
         img = Image.open(f"training_images/{i}.png")
@@ -25,6 +25,7 @@ def read_training_data(elements): # Name images <category>(<item>) starting with
     r = np.array(data)
     print(r)
     return r
+    
 def convert(image):
     img = Image.open(f"{image}")
     img_gs = img.convert('L')
@@ -32,5 +33,12 @@ def convert(image):
     img_arr2d = np.array(img_gs)
     img_list = img_arr2d.flatten().tolist()
 
-    #print(matrix)
     return img_list
+
+def convert_oled(image):
+    img = Image.open(f"{image}")
+    img_gs = img.convert('L')
+    img_bin = img_grayscale.convert("1")
+    img_arr2d = np.array(img_bin)
+
+    return img_arr2d
