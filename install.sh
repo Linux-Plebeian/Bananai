@@ -7,5 +7,6 @@ sudo apt install python3-numpy
 sudo apt-get install python3-smbus
 sudo apt-get install i2c-tools
 
-pip install keyboard --break-system-packages
-pip install adafruit-circuitpython-ssd1306 adafruit-blinka --break-system-packages
+pip3 install board --break-system-packages
+pip3 install keyboard --break-system-packages
+pip3 install adafruit-circuitpython-ssd1306 adafruit-blinka --break-system-packages
