@@ -73,10 +73,16 @@ while True:
             prediction3 = np.round(dingus(input_image3, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             print((prediction1 + prediction2 + prediction3)/3)
             if (prediction1[0][1] + prediction2[0][1] + prediction3[0][1])/3 >= .5:
+                oled.oled.fill(0)
+                oled.oled.text("Mediocre",1,1,1)
                 print("Mid")
             elif (prediction1[0][0] + prediction2[0][0] + prediction3[0][0])/3 >= .5:
+                oled.oled.fill(0)
+                oled.oled.text("Enjoyable",1,1,1)
                 print("Good")
             elif (prediction1[0][2] + prediction2[0][2] + prediction3[0][2])/3 >= .5:
+                oled.oled.fill(0)
+                oled.oled.text("Poor",1,1,1)
                 print("Bad")
     else:
         print("Invalid command")
