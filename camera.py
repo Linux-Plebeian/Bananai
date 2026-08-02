@@ -31,7 +31,10 @@ def main():
         
             if keyboard.is_pressed('q'):
                 break
-        print("Processing . . .")
+        if keyboard.is_pressed('q'):
+            break
+
+    print("Processing . . .")
 
     
 
