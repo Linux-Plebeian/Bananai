@@ -7,10 +7,11 @@ i2c = busio.I2C(board.SCL, board.SDA)
 oled = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c)
 oled.text("BananAI v0.2", 0, 0, 1)
 def draw_sprite(x, y, l, h, sprite_bin):
+oled.fill(1)
     for i in range(0,l):
         for j in range(0,h):
             if sprite_bin[i + j*l] >= 0.9:
-                oled.pixel(i+x,j+y,1)
+                oled.pixel(i+x,j+y,0)
     oled.show()
 
 def clear():
