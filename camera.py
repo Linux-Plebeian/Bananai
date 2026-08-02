@@ -30,10 +30,8 @@ def main():
             oled.draw_sprite(1,1,127,63,ita.convert_oled("camera/banana1.png"))
         
             if keyboard.is_pressed('q'):
-                deez()
                 break
-        if breakage == 1:
-            break
+        print("Processing . . .")
 
     
 
