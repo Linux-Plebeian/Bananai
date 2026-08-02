@@ -65,9 +65,10 @@ while True:
         #path = input("Enter image filename: ")
         for i in range(1,20):
             c.main()
-            input_image1 = ita.convert(f"banana1.png")
-            input_image2 = ita.convert(f"banana2.png")
-            input_image3 = ita.convert(f"banana3.png")
+            input_image1 = ita.convert(f"images/banana1.png")
+            input_image2 = ita.convert(f"images/banana2.png")
+            input_image3 = ita.convert(f"images/banana3.png")
+            oled.draw_sprite(ita.convert("camera/banana1.png"))
             prediction1 = np.round(dingus(input_image1, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             prediction2 = np.round(dingus(input_image2, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             prediction3 = np.round(dingus(input_image3, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
