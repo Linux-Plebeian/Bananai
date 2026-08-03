@@ -1,7 +1,6 @@
 import numpy as np
 import json
 import imgtoarray as ita
-import trainer as tr
 import asdlkfj as deez
 import camera as c
 import oled
@@ -32,16 +31,11 @@ desired_training_outputs = [[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0
                             ]
 
 
-print("Type \"Help\" for a list of commands")
 
 oled.test()
 while True:
     command = "banana"
-    if command == "help":
-        print("train, banana")
-    elif command == "train":
-        tr.train(input_faces, desired_training_outputs)
-    elif command == "banana":
+    if command == "banana":
         with open("training_data/weights1.txt", "r") as file:
             weights1 = json.load(file)
         with open("training_data/bias1.txt", "r") as file:
