@@ -30,15 +30,14 @@ def main():
             vid = picam2.capture_array()
             cv2.imwrite(f"images/banana{i}.png", vid)
             img = Image.open(f"images/banana{i}.png")
-            img = img.resize((128, 64))
             img.save(f"camera/banana{i}.png")
+            _, img_bin = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY)
             img = img.resize((28, 28))
             img.save(f"images/banana{i}.png")
-            #print("frame",test)
-            test+=1
+            img_pil = Image.fromarray(img_bin)
             oled.clear()
-            oled.draw_sprite(0,0,128,64,ita.convert_oled("camera/banana1.png"))
-        
+            oled.oled.image(img_pil)
+            oled.show() 
             if keyboard.is_pressed('q'):
                 break
         if keyboard.is_pressed('q'):
