@@ -68,26 +68,19 @@ while True:
             print((prediction1 + prediction2 + prediction3)/3)
             if (prediction1[0][1] + prediction2[0][1] + prediction3[0][1])/3 >= .5:
                 oled.oled.fill(0)
-                oled.oled.text("Mediocre",1,1,1)
+                oled.oled.text("Mediocre",0,1,1)
                 oled.oled.show()
                 print("Mid")
             elif (prediction1[0][0] + prediction2[0][0] + prediction3[0][0])/3 >= .5:
                 oled.oled.fill(0)
-                oled.oled.text("Enjoyable",1,1,1)
+                oled.oled.text("Enjoyable",0,1,1)
                 oled.oled.show()
                 print("Good")
             elif (prediction1[0][2] + prediction2[0][2] + prediction3[0][2])/3 >= .5:
                 oled.oled.fill(0)
-                oled.oled.text("Poor",1,1,1)
+                oled.oled.text("Poor",0,1,1)
                 oled.oled.show()
                 print("Bad")
-            else:
-				print("Scan again")
-				oled.oled.fill(0)
-                oled.oled.text("Scan again",1,1,1)
-                oled.oled.show()
-    else:
-        print("Invalid command")
         
     
     
