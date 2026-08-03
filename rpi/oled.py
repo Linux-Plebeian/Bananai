@@ -21,5 +21,5 @@ def test():
     time.sleep(.1)
     oled.fill(0)
     oled.show()
-    oled.text("BananAI v0.2", 0, 0, 1)
+    oled.text("Loading", 0, 0, 1)
     oled.show()
