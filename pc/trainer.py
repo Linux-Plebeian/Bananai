@@ -99,8 +99,8 @@ def train(training_inputs, training_outputs):
             print("Epoch: ", epochs, "/", epochs)
     
     #store training data to avoid unnessecary gym sessions
-    with open("training_data/l3_outputs.txt", "w") as file:
-        json.dump(l3_outputs.tolist(), file)
+    with open("training_data/l5_outputs.txt", "w") as file:
+        json.dump(l5_outputs.tolist(), file)
     with open("training_data/weights1.txt", "w") as file:
         json.dump(weights1.tolist(), file)
     with open("training_data/bias1.txt", "w") as file:
