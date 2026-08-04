@@ -42,7 +42,7 @@ def main():
 
     print("Processing . . .")
     oled.oled.fill(0)
-    oled.oled.text("Processing",1,1,1)
+    oled.oled.text("Processing . . .",0,1,1)
     oled.oled.show()
     
 #picam2.stop()
