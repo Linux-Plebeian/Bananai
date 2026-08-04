@@ -15,15 +15,9 @@ config = picam2.create_still_configuration(main={"size": (128, 64)})
 picam2.configure(config)
 picam2.start()
 
-def deez():
-    global breakage
-    print("Processing...")
-    breakage = 1
 
 def main():
-    global breakage
-    test = 0
-    breakage = 0
+
     
     while True:
         for i in range(1, 4):
@@ -35,7 +29,7 @@ def main():
             _, img_bin = cv2.threshold(gray_arr, 128, 255, cv2.THRESH_BINARY)
             img = img.resize((28, 28))
             img.save(f"images/banana{i}.png")
-            img_pil = Image.fromarray(img_bin)
+            img_pil = Image.fromarray(img_bin).convert('1')
             oled.oled.fill(0)
             oled.oled.image(img_pil)
             oled.oled.show() 
