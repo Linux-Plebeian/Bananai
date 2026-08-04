@@ -6,7 +6,7 @@ hidden_n = 1024
 hidden2_n = 512
 hidden3_n = 256
 hidden4_n = 128
-n_outputs = 3
+n_outputs = 4
 learning_rate = 0.0000001
 #activation
 def relu(x):
