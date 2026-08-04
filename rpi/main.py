@@ -33,6 +33,7 @@ desired_training_outputs = [[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0
 
 
 oled.test()
+oled.oled.text("Initializing", 0, 10,1)
 while True:
     command = "banana"
     if command == "banana":
@@ -57,6 +58,7 @@ while True:
         with open("training_data/bias5.txt", "r") as file:
             bias5 = json.load(file)
         #path = input("Enter image filename: ")
+        oled.text("Starting",0,19,1)
         while True:
             c.main()
             input_image1 = ita.convert(f"images/banana1.png")
