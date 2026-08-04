@@ -7,9 +7,6 @@ import keyboard
 from picamera2 import Picamera2
 import time
 
-breakage = 0
-
-# Initialize PiCamera2 with desired resolution
 picam2 = Picamera2()
 config = picam2.create_still_configuration(main={"size": (128, 64)})
 picam2.configure(config)

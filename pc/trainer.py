@@ -1,13 +1,16 @@
 import numpy as np
+import cupy as cp
 import json
+from pathlib import Path
+
 #const
 image_lw = 784
 hidden_n = 1024
 hidden2_n = 512
 hidden3_n = 256
 hidden4_n = 128
-n_outputs = 3
-learning_rate = 0.0000001
+n_outputs = 4
+learning_rate = 0.0000000001
 #activation
 def relu(x):
     return np.maximum(0, x)
@@ -17,6 +20,27 @@ def softmax(x): #exaggerates differences by exponentiation
     exp_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
     return exp_x / np.sum(exp_x, axis=-1, keepdims=True) #prevents overflow (?)
 
+def dump_corrections(training_data_paths):
+    desired_training_outputs = []
+    file_ct  = len([f for f in Path(training_data_paths[0]).iterdir() if f.is_file()])
+    for files in range(0,file_ct):
+        print(files)
+        desired_training_outputs.append([1,0,0,0]) 
+    file_ct  = len([f for f in Path(training_data_paths[1]).iterdir() if f.is_file()])
+    for files in range(0,file_ct):
+        print(files)
+        desired_training_outputs.append([0,1,0,0]) 
+    file_ct  = len([f for f in Path(training_data_paths[2]).iterdir() if f.is_file()])
+    for files in range(0,file_ct):
+        print(files)
+        desired_training_outputs.append([0,0,1,0]) 
+    file_ct  = len([f for f in Path(training_data_paths[3]).iterdir() if f.is_file()])
+    for files in range(0,file_ct):
+        print(files)
+        desired_training_outputs.append([0,0,0,1]) 
+    print(desired_training_outputs)
+    with open("training_data/desired_training_outputs.txt", "w") as file:
+        json.dump(desired_training_outputs, file)
 def train(training_inputs, training_outputs):
     epochs=int(input("Epochs? "))
     print("training...")

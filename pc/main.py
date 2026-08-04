@@ -19,23 +19,9 @@ def dingus(input_layer, weights1, bias1, weights2, bias2, weights3, bias3, weigh
     l5_outputs = tr.softmax(l5)
     return l5_outputs
 
-training_data_paths = ["training_images/underripe", "training_images/ripe", "training_images/overripe", "training_images/rotten"]
-input_faces = ita.read_training_data(training_data_paths)
-desired_training_outputs = []
+training_data_paths = ["training_images/unripe", "training_images/ripe", "training_images/overripe", "training_images/rotten"]
 
-file_ct  = len([f for f in training_data_paths[0].iterdir() if f.isfile()])
-for files in range(0,file_ct):
-    desired_training_outputs.append([1,0,0,0]) 
-file_ct  = len([f for f in training_data_paths[1].iterdir() if f.isfile()])
-for files in range(0,file_ct):
-    desired_training_outputs.append([0,1,0,0]) 
-file_ct  = len([f for f in training_data_paths[2].iterdir() if f.isfile()])
-for files in range(0,file_ct):
-    desired_training_outputs.append([0,0,1,0]) 
-file_ct  = len([f for f in training_data_paths[3].iterdir() if f.isfile()])
-for files in range(0,file_ct):
-    desired_training_outputs.append([0,0,0,1]) 
-print(desired_training_outputs)
+
 print("Type \"Help\" for a list of commands")
 
 #will implement preference data harvested from summer camp
@@ -43,9 +29,21 @@ print("Type \"Help\" for a list of commands")
 while True:
     command = input("> ")
     if command == "help":
-        print("train, banana")
+        print("datamanage, train, dump, banana")
+    elif command == "datamanage":
+        ita.name_training_data(training_data_paths[0])
+        ita.name_training_data(training_data_paths[1])
+        ita.name_training_data(training_data_paths[2])
+        ita.name_training_data(training_data_paths[3])
     elif command == "train":
+        input_faces = ita.read_training_data(training_data_paths)
+        with open("training_data/desired_training_outputs.txt", "r") as file:
+            desired_training_outputs = json.load(file)
         tr.train(input_faces, desired_training_outputs)
+    elif command == "dump":
+        tr.dump_corrections(training_data_paths)
+        with open("training_data/desired_training_outputs.txt", "r") as file:
+            desired_training_outputs = json.load(file)
     elif command == "banana":
         with open("training_data/weights1.txt", "r") as file:
             weights1 = json.load(file)
@@ -70,20 +68,20 @@ while True:
         #path = input("Enter image filename: ")
         for i in range(1,20):
             c.main()
-            input_image1 = ita.test(f"camera/banana1.png")
-            input_image2 = ita.test(f"camera/banana2.png")
-            input_image3 = ita.test(f"camera/banana3.png")
+            input_image1 = ita.convert(f"camera/banana1.png")
+            input_image2 = ita.convert(f"camera/banana2.png")
+            input_image3 = ita.convert(f"camera/banana3.png")
             prediction1 = np.round(dingus(input_image1, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             prediction2 = np.round(dingus(input_image2, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             prediction3 = np.round(dingus(input_image3, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             print((prediction1 + prediction2 + prediction3)/3)
             if (prediction1[0][0] + prediction2[0][0] + prediction3[0][0])/3 >= .5:
                 print("Underripe")
-            elif (prediction1[0][0] + prediction2[0][1] + prediction3[0][0])/3 >= .5:
+            elif (prediction1[0][1] + prediction2[0][1] + prediction3[0][1])/3 >= .5:
                 print("Ripe")
-            elif (prediction1[0][0] + prediction2[0][2] + prediction3[0][0])/3 >= .5:
+            elif (prediction1[0][2] + prediction2[0][2] + prediction3[0][2])/3 >= .5:
                 print("Overripe")
-            elif (prediction1[0][0] + prediction2[0][3] + prediction3[0][0])/3 >= .5:
+            elif (prediction1[0][3] + prediction2[0][3] + prediction3[0][3])/3 >= .5:
                 print("Rotten")
             else:
                 print("Rescan")

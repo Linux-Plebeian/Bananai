@@ -3,33 +3,7 @@ from PIL import Image
 import os
 from pathlib import Path
 
-
-
-'''def read_training_data(elements): # Name images <category>(<item>) starting with 1 for categories and 0 for item no. -> ex. 2(1)
-    data = [[]]
-    for i in range(0,elements):
-        img = Image.open(f"training_images/{i}.png")
-        img_gs = img.convert('L')
-        #img_bin = img_gs.convert("1")
-        img_arr2d = np.array(img_gs)
-        img_list = (img_arr2d/255).flatten().tolist()
-        data.append(img_list) 
-    del data[0] 
-    r = np.array(data)
-    print(r)
-    return r
-    
-def name_data(name, name2):
-    for i in range(0,10):
-        os.rename(f"./training_images/{name}_0"+str(i)+".png", "./training_images/"+str(i)+".png")
-    for i in range(10,72):
-        os.rename(f"./training_images/{name}_"+str(i)+".png", "./training_images/"+str(i)+".png")
-    for i in range(0,10):
-        os.rename(f"./training_images/{name2}_0"+str(i)+".png", "./training_images/"+str(i+72)+".png")
-    for i in range(10,72):
-        os.rename(f"./training_images/{name2}_"+str(i)+".png", "./training_images/"+str(i+72)+".png")
-'''
-def test(image):
+def convert(image):
     img = Image.open(f"{image}")
     img_grayscale = img.convert('L')
     img_bin = img_grayscale.convert("1")
@@ -39,30 +13,34 @@ def test(image):
     #print(matrix)
     return(img_list)
     
-def name_training_data(path)
-    file_ct = len([f for f in path.iterdir() if f.isfile()])
+def name_training_data(path):
+    file_ct = len([f for f in Path(path).iterdir() if f.is_file()])
     files = os.listdir(path)
-    for i in range(0,file_ct1):
+    for i in range(0,file_ct):
+        
         old_path = os.path.join(path, files[i])
         new_path = os.path.join(path, f"img_{i}.png")
         print(new_path)
         os.rename(old_path, new_path)
+        img = Image.open(new_path)
+        if img.size != (28, 28):
+            img = img.resize((28,28))
+            img.convert('L').save(new_path)
+
 def read_training_data(paths):
-    file_ct = len([f for f in path.iterdir() if f.isfile()])
     data = []
-    for path in paths:
-        file_ct  = len([f for f in paths[path].iterdir() if f.isfile()])
-        for files in range(0,file_ct):
-            img = Image.open(f"{paths[path]}/img_{files}.png")
-            img_gs = img.convert('L')
+    for path in range(0,len(paths)):
+        file_ct  = len([f for f in Path(paths[path]).iterdir() if f.is_file()])
+        for i in range(0,file_ct):
+            img = Image.open(f"{paths[path]}/img_{i}.png")
             #img_bin = img_gs.convert("1")
-            img_arr2d = np.array(img_gs)
-            img_list = (img_arr2d/255).flatten().tolist()
+            img_arr2d = np.array(img)
+            print(path, " ", i)
+            img_list = ((img_arr2d.astype(np.float16))/255).flatten()
             data.append(img_list) 
-        
+    
         
     r = np.array(data)
-    #print(r)
+    print(r)
     return r
-	
-		
+

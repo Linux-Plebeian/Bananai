@@ -8,6 +8,7 @@ sudo apt-get install python3-smbus
 sudo apt-get install i2c-tools
 sudo apt install python3-picamera2
 
+pip3 install cupy --break-system-packages
 pip3 install board --break-system-packages
 pip3 install keyboard --break-system-packages
 pip3 install adafruit-circuitpython-ssd1306 adafruit-blinka --break-system-packages
