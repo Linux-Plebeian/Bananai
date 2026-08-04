@@ -91,6 +91,11 @@ while True:
                 oled.oled.show()
                 print("Bad")
                 time.sleep(1)
-        
+			else:
+				oled.oled.fill(0)
+                oled.oled.text("Rescan",0,1,1)
+                oled.oled.show()
+                print("Rescan")
+                time.sleep(1)
     
     
