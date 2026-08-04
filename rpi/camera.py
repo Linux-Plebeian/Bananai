@@ -25,8 +25,8 @@ def main():
             cv2.imwrite(f"images/banana{i}.png", vid)
             img = Image.open(f"images/banana{i}.png")
             img.save(f"camera/banana{i}.png")
-            gray_arr = np.array(img.convert('L'))
-            _, img_bin = cv2.threshold(gray_arr, 128, 255, cv2.THRESH_BINARY)
+            img_gs = np.array(img.convert('L'))
+            _, img_bin = cv2.threshold(img_gs, 128, 255, cv2.THRESH_BINARY)
             img = img.resize((28, 28))
             img.save(f"images/banana{i}.png")
             img_pil = Image.fromarray(img_bin).convert('1')
@@ -45,6 +45,6 @@ def main():
     oled.oled.text("Processing",1,1,1)
     oled.oled.show()
     
-picam2.stop()
-cv2.destroyAllWindows()
+#picam2.stop()
+#cv2.destroyAllWindows()
 
