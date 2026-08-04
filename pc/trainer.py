@@ -2,12 +2,12 @@ import numpy as np
 import json
 #const
 image_lw = 784
-hidden_n = 1568
+hidden_n = 1024
 hidden2_n = 784
 hidden3_n = 196
 hidden4_n = 32
 n_outputs = 3
-learning_rate = 0.000001
+learning_rate = 0.00001
 #activation
 def relu(x):
     return np.maximum(0, x)
