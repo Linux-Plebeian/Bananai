@@ -19,20 +19,26 @@ def dingus(input_layer, weights1, bias1, weights2, bias2, weights3, bias3, weigh
     l5_outputs = tr.softmax(l5)
     return l5_outputs
 
-elements = 144
-input_faces = ita.read_training_data(elements)
-desired_training_outputs = [[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],
-                            [0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],
-                            [0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],
-                            [1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],[1,0,0],
-                            [0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],
-                            [0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,1],
-                            ]
+training_data_paths = ["training_images/underripe", "training_images/ripe", "training_images/overripe", "training_images/rotten"]
+input_faces = ita.read_training_data(training_data_paths)
+desired_training_outputs = []
 
-
+file_ct  = len([f for f in training_data_paths[0].iterdir() if f.isfile()])
+for files in range(0,file_ct):
+    desired_training_outputs.append([1,0,0,0]) 
+file_ct  = len([f for f in training_data_paths[1].iterdir() if f.isfile()])
+for files in range(0,file_ct):
+    desired_training_outputs.append([0,1,0,0]) 
+file_ct  = len([f for f in training_data_paths[2].iterdir() if f.isfile()])
+for files in range(0,file_ct):
+    desired_training_outputs.append([0,0,1,0]) 
+file_ct  = len([f for f in training_data_paths[3].iterdir() if f.isfile()])
+for files in range(0,file_ct):
+    desired_training_outputs.append([0,0,0,1]) 
+print(desired_training_outputs)
 print("Type \"Help\" for a list of commands")
 
-#data harvested from summer camp
+#will implement preference data harvested from summer camp
 
 while True:
     command = input("> ")
@@ -71,12 +77,17 @@ while True:
             prediction2 = np.round(dingus(input_image2, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             prediction3 = np.round(dingus(input_image3, weights1, bias1, weights2, bias2, weights3, bias3, weights4, bias4, weights5, bias5), decimals=3)
             print((prediction1 + prediction2 + prediction3)/3)
-            if (prediction1[0][1] + prediction2[0][1] + prediction3[0][1])/3 >= .5:
-                print("Mid")
-            elif (prediction1[0][0] + prediction2[0][0] + prediction3[0][0])/3 >= .5:
-                print("Good")
-            elif (prediction1[0][2] + prediction2[0][2] + prediction3[0][2])/3 >= .5:
-                print("Bad")
+            if (prediction1[0][0] + prediction2[0][0] + prediction3[0][0])/3 >= .5:
+                print("Underripe")
+            elif (prediction1[0][0] + prediction2[0][1] + prediction3[0][0])/3 >= .5:
+                print("Ripe")
+            elif (prediction1[0][0] + prediction2[0][2] + prediction3[0][0])/3 >= .5:
+                print("Overripe")
+            elif (prediction1[0][0] + prediction2[0][3] + prediction3[0][0])/3 >= .5:
+                print("Rotten")
+            else:
+                print("Rescan")
+                
     else:
         print("Invalid command")
         
