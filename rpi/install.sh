@@ -11,3 +11,13 @@ sudo apt install python3-picamera2
 pip3 install board --break-system-packages
 pip3 install keyboard --break-system-packages
 pip3 install adafruit-circuitpython-ssd1306 adafruit-blinka --break-system-packages
+
+echo "Enter username to automatically log in with"
+read username
+
+autologstr = '[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --noclear --autologin ' 
+autologstr += username
+autologstr += ' %I $TERM'
+sudo echo autologstr  > /etc/systemd/system/getty@tty1.service.d/autologin.conf
