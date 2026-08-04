@@ -5,6 +5,7 @@ import asdlkfj as deez
 import camera as c
 import oled
 import trainer as tr
+import time
 
 print(deez.nuts())
 
@@ -77,16 +78,19 @@ while True:
                 oled.oled.text("Mediocre",0,1,1)
                 oled.oled.show()
                 print("Mid")
+                time.sleep(1)
             elif (prediction1[0][0] + prediction2[0][0] + prediction3[0][0])/3 >= .5:
                 oled.oled.fill(0)
                 oled.oled.text("Enjoyable",0,1,1)
                 oled.oled.show()
                 print("Good")
+                time.sleep(1)
             elif (prediction1[0][2] + prediction2[0][2] + prediction3[0][2])/3 >= .5:
                 oled.oled.fill(0)
                 oled.oled.text("Poor",0,1,1)
                 oled.oled.show()
                 print("Bad")
+                time.sleep(1)
         
     
     
