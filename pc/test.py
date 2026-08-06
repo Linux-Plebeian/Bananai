@@ -11,9 +11,9 @@ print(deez.nuts())
 failed = 0
 total = 15
 for i in range(1, 5):
-    ripe = ita.convert_rgb(f"test_images/test_ripe{i}.jpg")
-    unripe = ita.convert_rgb(f"test_images/test_unripe{i}.jpg")
-    overripe = ita.convert_rgb(f"test_images/test_overripe{i}.jpg")
+    ripe = ita.convert_rgb(Image.open(f"test_images/test_ripe{i}.jpg"))
+    unripe = ita.convert_rgb(Image.open(f"test_images/test_unripe{i}.jpg"))
+    overripe = ita.convert_rgb(Image.open(f"test_images/test_overripe{i}.jpg"))
 
 
     test_unripe = np.round(nn.forward_prop(unripe, nn.weights1, nn.bias1, nn.weights2, nn.bias2, nn.weights3, nn.bias3, nn.weights4, nn.bias4, nn.weights5, nn.bias5), decimals=3)
