@@ -6,13 +6,13 @@ from pathlib import Path
 img_size = (64, 64)
 
 def convert_bin(img):
-    img_bin = Image.open(img).convert("1")
+    img_bin = (img).convert("1")
     img_arr2d = np.array(img_bin.resize(img_size))
     img_list = img_arr2d.flatten().tolist()
     return img_list
 
 def convert_rgb(img):
-    img_rgb = Image.open(img).resize(img_size).convert("RGB")
+    img_rgb = (img).resize(img_size).convert("RGB")
     pixel_rgb_values = list(img_rgb.getdata())
     img_flat = []
     for tup in pixel_rgb_values:
